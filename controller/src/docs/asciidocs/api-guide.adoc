@@ -1,0 +1,166 @@
+= Ticket Service API Guide
+:doctype: book
+:icons: font
+:source-highlighter: highlightjs
+:toc: left
+:toclevels: 4
+:sectlinks:
+
+[[overview]]
+= Overview
+
+[[overview-http-verbs]]
+
+== HTTP verbs
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP verbs.
+
+|===
+| Verb | Usage
+
+| `GET`
+| Used to retrieve a resource
+
+| `PUT`
+| Used to update a resource
+
+| `POST`
+| Used to create a new resource
+
+|===
+
+[[overview-http-status-codes]]
+== HTTP status codes
+
+RESTful notes tries to adhere as closely as possible to standard HTTP and REST conventions in its
+use of HTTP status codes.
+
+|===
+| Status code | Usage
+
+| `200 OK`
+| The request completed successfully
+
+| `201 Created`
+| A new resource has been created successfully.
+
+| `400 Bad Request`
+| The request was malformed. The response body will include an error providing further information
+
+| `404 Not Found`
+| The requested resource did not exist. The response body will include an error providing further information
+|===
+
+[[http-headers]]
+
+== HTTP Headers
+
+|===
+| Header | Result
+
+| Accept-Encoding: gzip,deflate
+| The service will send the response compressed with gzip
+
+| Content-Encoding: gzip, deflate
+| The service will accept a request encoded with gzip.
+|===
+
+[[overview-errors]]
+== Errors
+
+Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
+that describes the problem.
+
+== Error Codes
+
+[cols="3", options="header"]
+|===
+|Code
+|Value
+|Description
+
+| 101
+| TICKET_NOT_FOUND
+| Could not find requested ticket
+
+| 102
+| INVALID_INPUT_PARAMETER
+| Invalid Input Parameter
+
+| 103
+| BINDING_ERROR
+| The Binding was not successful for the model - see error for column details check your field names and values
+|===
+
+== Ticket Service Resource API guides
+
+Describe the resources that can be used for ticket management
+
+=== Creates a new ticket
+
+Creates a new ticket with the given details
+
+==== Request structure example
+
+include::{snippets}/ticket-controller-test/create-new-ticket/http-request.adoc[]
+
+==== Response structure example
+
+include::{snippets}/ticket-controller-test/create-new-ticket/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/ticket-controller-test/create-new-ticket/response-fields.adoc[]
+
+==== CURL Request
+
+include::{snippets}/ticket-controller-test/create-new-ticket/curl-request.adoc[]
+
+==== HTTPie request
+
+include::{snippets}/ticket-controller-test/create-new-ticket/httpie-request.adoc[]
+
+=== Retrieve the details of a ticket
+
+Retrieves the details of a ticket with provided ticket number
+
+==== Request structure example
+
+include::{snippets}/ticket-controller-test/get-ticket-by-id/http-request.adoc[]
+
+==== Response structure example
+
+include::{snippets}/ticket-controller-test/get-ticket-by-id/http-response.adoc[]
+
+==== Response fields
+
+include::{snippets}/ticket-controller-test/get-ticket-by-id/response-fields.adoc[]
+
+==== CURL Request
+
+include::{snippets}/ticket-controller-test/get-ticket-by-id/curl-request.adoc[]
+
+==== HTTPie request
+
+include::{snippets}/ticket-controller-test/get-ticket-by-id/httpie-request.adoc[]
+
+=== Closes an existing Ticket
+
+Closes an existing ticket
+
+==== Request structure example
+
+include::{snippets}/ticket-controller-test/close-ticket/http-request.adoc[]
+
+==== Response structure example
+
+include::{snippets}/ticket-controller-test/close-ticket/http-response.adoc[]
+
+==== CURL Request
+
+include::{snippets}/ticket-controller-test/close-ticket/curl-request.adoc[]
+
+==== HTTPie request
+
+include::{snippets}/ticket-controller-test/close-ticket/httpie-request.adoc[]

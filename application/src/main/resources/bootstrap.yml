@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: ticket-service
+  profiles:
+    active: ${ACTIVE_PROFILE:dev}
+---
+spring:
+  profiles: dev
+  cloud:
+    config:
+      enabled: false
+    consul:
+      enabled: false
+
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://${CONFIG_SERVER:localhost}:8080
+      enabled: true
+      token: ${VAULT_TOKEN}

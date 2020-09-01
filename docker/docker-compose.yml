@@ -1,0 +1,29 @@
+version: "3.2"
+
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: tickets
+    ports:
+      - 27017:27017
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+  ticket-service:
+    image: robsrepo/ticket-service:latest
+    container_name: ticket-service
+    ports:
+      - 8080:8080
+    depends_on:
+      - mongo
+    environment:
+      - ACTIVE_PROFILE=prod
+      - TIMEZONE=UTC
+      - MONGODB_DB=tickets
+      - MONGODB_HOST=mongo
+      - MONGODB_PORT=27017
+
